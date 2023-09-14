@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "V1::Items", type: :request do  # V1::Items に変更
+RSpec.describe "V1::Items", type: :request do
   describe "GET /items" do
-    it "works! (now write some real specs)" do
-      get v1_items_path  # items_index_path を v1_items_path に変更
+    it "returns all items" do
+      get v1_items_path
       expect(response).to have_http_status(200)
     end
   end
