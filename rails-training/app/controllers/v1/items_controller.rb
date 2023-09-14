@@ -1,4 +1,9 @@
 class V1::ItemsController < ApplicationController
+  def index
+    items = Item.all
+    render json: { status: 'success', data: items }, status: :ok
+  end
+
   def create
     item = Item.new(item_params)
     if item.save
