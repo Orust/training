@@ -123,6 +123,7 @@ GEM
     mini_portile2 (2.8.4)
     minitest (5.20.0)
     msgpack (1.7.2)
+    mysql2 (0.5.5)
     net-imap (0.3.7)
       date
       net-protocol
@@ -209,8 +210,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.6)
-      mini_portile2 (~> 2.8.0)
     stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     stringio (3.0.8)
@@ -249,12 +248,12 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2.0)
   importmap-rails
   jbuilder
+  mysql2 (~> 0.5.3)
   puma (~> 5.0)
   rails (~> 7.0.6)
   rspec-rails (~> 5.0.0)
   selenium-webdriver
   sprockets-rails
-  sqlite3 (~> 1.4)
   stimulus-rails
   turbo-rails
   tzinfo-data
