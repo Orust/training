@@ -1,4 +1,6 @@
 class V1::ItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     items = Item.all
     render json: { status: 'success', data: items }, status: :ok
