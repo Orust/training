@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "articles#index"
+  mount Rswag::Api::Engine => '/api-docs'
+  root "v1/items#index"
 
   namespace :v1 do
     resources :items, only: [:index, :create]
