@@ -1,0 +1,14 @@
+# 使用するベースイメージ
+FROM ruby:2.7.8
+
+# 作業ディレクトリの設定
+WORKDIR /app
+
+# GemfileとGemfile.lockを先にコピー
+COPY Gemfile Gemfile.lock ./
+
+# Bundlerでgemをインストール
+RUN bundle install
+
+# その他のプロジェクトファイルをコピー
+COPY . .
