@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "V1::Items", type: :request do
   describe "GET /items" do
     it "returns all items" do
+      FactoryBot.create(:item)
       get v1_items_path
       expect(response).to have_http_status(200)
     end
