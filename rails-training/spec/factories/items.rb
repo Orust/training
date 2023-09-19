@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name { "f item" }
-    description { "f description" }
+    name { "factory name" }
+    description { "factory desc" }
     price { 100 }
   end
 end
