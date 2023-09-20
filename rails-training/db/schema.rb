@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_19_091719) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_093018) do
   create_table "categories", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "item_tags", charset: "utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_tags_on_item_id"
+    t.index ["tag_id"], name: "index_item_tags_on_tag_id"
   end
 
   create_table "items", charset: "utf8", force: :cascade do |t|
@@ -27,4 +36,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_091719) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "tags", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "item_tags", "items"
+  add_foreign_key "item_tags", "tags"
 end

@@ -7,6 +7,7 @@ class V1::ItemsController < ApplicationController
   end
 
   def create
+    binding.pry
     item = Item.new(item_params)
     if item.save
       render json: { status: 'success', data: item }, status: :ok

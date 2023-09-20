@@ -3,5 +3,6 @@ FactoryBot.define do
     name { "factory name" }
     description { "factory desc" }
     price { 100 }
+    category
   end
 end
