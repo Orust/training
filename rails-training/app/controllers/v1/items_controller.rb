@@ -9,6 +9,7 @@ class V1::ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     if item.save
+      UserMailer.item_created_email(item).deliver_now
       render json: { status: 'success', data: item }, status: :ok
     else
       render json: { status: 'error', data: item.errors }, status: :unprocessable_entity

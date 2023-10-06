@@ -7,3 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Item.create(name: "seed item", description: "seed description", price: 0)
+
+Category.create(name: "Electronics")
+Category.create(name: "Books")
+Category.create(name: "Clothing")

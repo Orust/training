@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name { "MyString" }
-    email { "MyString" }
+    name { "FactoryName" }
+    email { "factory@example.com" }
   end
 end
