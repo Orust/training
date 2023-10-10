@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name { "FactoryName" }
-    email { "factory@example.com" }
+    name { |n| "FactoryName#{n}" }
+    email { |n| "factory#{n}" + "@example" + ".com" }
   end
 end

@@ -6,12 +6,4 @@ RSpec.describe User, type: :model do
   it 'has a valid factory' do
     expect(subject).to be_valid
   end
-
-  it 'has a valid name' do
-    expect(subject.name).to eq('FactoryName')
-  end
-
-  it 'has a valid email' do
-    expect(subject.email).to eq('factory@example.com')
-  end
 end
