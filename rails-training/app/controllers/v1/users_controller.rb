@@ -1,16 +1,19 @@
-class UsersController < ApplicationController
+class V1::UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
-    @users = User.all
+    users = User.all
+    render json: { status: 'success', data: users }, status: :ok
   end
 
   def create
-    @user = User.new(user_params)
+    user = User.new(user_params)
 
-    if @user.save!
-      WelcomeEmailJob.perform_async(@user.id)
-      redirect_to users_path
+    if user.save!
+      WelcomeEmailJob.perform_async(user.id)
+      render json: { status: 'success', data: user }, status: :ok
     else
-      render :new
+      render json: { status: 'error', data: user.errors }, status: :unprocessable_entity
     end
   end
 
