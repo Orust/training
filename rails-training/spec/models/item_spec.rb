@@ -18,8 +18,17 @@ RSpec.describe Item, type: :model do
       item.tags << tag1
       item.tags << tag2
 
-      expect(item.tags.count).to eq(2)
+      expect(item.tags.count).to eq(3)
       expect(item.tags).to include(tag1, tag2)
+    end
+  end
+
+  describe "auto-generated tag after generate" do
+    it "should have auto-generated tag" do
+      item = FactoryBot.create(:item)
+      auto_tag = item.tags.find_by(name: "自動生成タグ")
+      
+      expect(auto_tag).to be_present
     end
   end
 end

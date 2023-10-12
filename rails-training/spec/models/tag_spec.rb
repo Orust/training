@@ -10,7 +10,7 @@ RSpec.describe Tag, type: :model do
       item.tags << tag1
       item.tags << tag2
 
-      expect(item.tags.count).to eq(2)
+      expect(item.tags.count).to eq(3)
       expect(item.tags).to include(tag1, tag2)
     end
   end
