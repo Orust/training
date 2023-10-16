@@ -15,6 +15,24 @@ class V1::ItemsController < ApplicationController
       render json: { status: 'error', data: item.errors }, status: :unprocessable_entity
     end
   end
+
+  def create_with_transaction
+    begin
+      ActiveRecord::Base.transaction do
+        item = Item.new(item_params)
+        tag = Tag.new(name: "新しいタグ")
+
+        item.save!
+        tag.save!
+
+        item.tags << tag
+      end
+
+      render json: { status: 'success' }, status: :ok
+    rescue StandardError => e
+      render json: { status: 'error', message: e.message }, status: :unprocessable_entity
+    end
+  end
 end
 
 private

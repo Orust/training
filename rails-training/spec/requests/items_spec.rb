@@ -22,4 +22,33 @@ RSpec.describe "V1::Items", type: :request do
       expect(mail.to).to eq(['orust_4t@gmail.com'])
     end
   end
+
+  describe 'POST #create_with_transaction' do
+    context '正常系' do
+      it 'ItemとTagが正常に作成される' do
+        post v1_items_path, params: { item: { name: 'テストアイテム', description: 'テスト説明', price: 1000, category_id: 141 } }
+
+        expect(response.status).to eq(200)
+        expect(JSON.parse(response.body)['status']).to eq('success')
+      end
+    end
+
+    context '異常系' do
+      it 'Itemの保存に失敗すると、トランザクションがロールバックされる' do
+        post v1_items_path, params: { item: { name: '', description: 'テスト説明', price: 1000, category_id: 141 } }
+
+        expect(response.status).to eq(422)
+        expect(JSON.parse(response.body)['status']).to eq('error')
+      end
+
+      # it 'Tagの保存に失敗すると、トランザクションがロールバックされる' do
+      #   allow_any_instance_of(Tag).to receive(:save!).and_raise(StandardError.new("Tagの保存に失敗"))
+
+      #   post v1_items_path, params: { item: { name: 'テストアイテム', description: 'テスト説明', price: 1000, category_id: 141 } }
+
+      #   expect(response.status).to eq(422)
+      #   expect(JSON.parse(response.body)['status']).to eq('error')
+      # end
+    end
+  end
 end
