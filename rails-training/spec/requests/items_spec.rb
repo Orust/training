@@ -12,6 +12,8 @@ RSpec.describe "V1::Items", type: :request do
 
   describe "POST /items" do
     it "create an item and sends an email" do
+      # allow(UserMailer).to receive_message_chain(:item_created_email, :deliver_now)
+
       post v1_items_path, params: { item: { name: "Example Item", description: "Example Description", price: 100, category_id: 141 } }
       expect(response).to have_http_status(200)
       json = JSON.parse(response.body)
@@ -20,6 +22,8 @@ RSpec.describe "V1::Items", type: :request do
       mail = ActionMailer::Base.deliveries.last
       expect(mail.subject).to eq('item created')
       expect(mail.to).to eq(['orust_4t@gmail.com'])
+
+      # expect(UserMailer).to have_received(:item_created_email)
     end
   end
 
@@ -41,14 +45,18 @@ RSpec.describe "V1::Items", type: :request do
         expect(JSON.parse(response.body)['status']).to eq('error')
       end
 
-      # it 'Tagの保存に失敗すると、トランザクションがロールバックされる' do
-      #   allow_any_instance_of(Tag).to receive(:save!).and_raise(StandardError.new("Tagの保存に失敗"))
+      it 'Tagの保存に失敗すると、トランザクションがロールバックされる' do
+        # allow_any_instance_of(Tag).to receive(:save!).and_raise(StandardError.new("Tagの保存に失敗"))
 
-      #   post v1_items_path, params: { item: { name: 'テストアイテム', description: 'テスト説明', price: 1000, category_id: 141 } }
+        fake_tag = double("Tag")
+        allow(fake_tag).to receive(:save!).and_raise(StandardError.new("Tagの保存に失敗"))
+        allow(Tag).to receive(:new).and_return(fake_tag)
 
-      #   expect(response.status).to eq(422)
-      #   expect(JSON.parse(response.body)['status']).to eq('error')
-      # end
+        post v1_items_path, params: { item: { name: 'テストアイテム', description: 'テスト説明', price: 1000, category_id: 141 } }
+
+        expect(response.status).to eq(422)
+        expect(JSON.parse(response.body)['status']).to eq('error')
+      end
     end
   end
 end
