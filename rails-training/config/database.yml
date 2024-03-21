@@ -12,9 +12,9 @@ development:
   <<: *default
   database: db/development
 
-# test:
-#   <<: *default
-#   database: db/test
+test:
+  <<: *default
+  database: db/test
 
 # production:
 #   <<: *default
