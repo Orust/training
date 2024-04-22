@@ -1,7 +1,11 @@
 function MyServerComponent({ data }: { data: any }) {
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <div>
-      <p>{data}</p>
+      <p>Base Experience: {data.base_experience}</p>
     </div>
   );
 }

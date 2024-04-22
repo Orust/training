@@ -5,7 +5,13 @@ export default function Home({ data }: { data: any }) {
     <div>
       <h1>My Server Component</h1>
       <MyServerComponent data={data}/>
-      <p>test</p>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
+  const data = await res.json();
+  console.log('aaa');
+  return { props: { data } };
 }
