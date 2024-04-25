@@ -5,8 +5,12 @@ function MyServerComponent({ data }: { data: any }) {
   
   return (
     <div>
-      <p>Base Experience: {data.base_experience}</p>
-      <p>Name: {data.forms[0].name}</p>
+      <p>Name: {data.name}</p>
+      <p>Order: {data.order}</p>
+      <div>
+        <img src={data.sprites.front_default} alt={`${data.name} normal front`} />
+        <img src={data.sprites.back_default} alt={`${data.name} normal back`} />
+      </div>
     </div>
   );
 }
