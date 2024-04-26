@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 function MyServerComponent({ data }: { data: any }) {
   if (!data) {
     return <div>Loading...</div>;
@@ -8,8 +10,18 @@ function MyServerComponent({ data }: { data: any }) {
       <p>Name: {data.name}</p>
       <p>Order: {data.order}</p>
       <div>
-        <img src={data.sprites.front_default} alt={`${data.name} normal front`} />
-        <img src={data.sprites.back_default} alt={`${data.name} normal back`} />
+        <Image
+          src={data.sprites.front_default}
+          alt={`${data.name} normal front`}
+          width={96}
+          height={96}
+        />
+        <Image
+          src={data.sprites.back_default}
+          alt={`${data.name} normal back`}
+          width={96}
+          height={96}
+        />
       </div>
     </div>
   );
