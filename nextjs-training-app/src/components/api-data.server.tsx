@@ -8,7 +8,7 @@ function MyServerComponent({ data }: { data: any }) {
   return (
     <div>
       <p>Name: {data.name}</p>
-      <p>Order: {data.order}</p>
+      <p>Pokedex Number: {data.id}</p>
       <div>
         <Image
           src={data.sprites.front_default}
