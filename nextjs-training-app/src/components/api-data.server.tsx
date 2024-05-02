@@ -22,6 +22,12 @@ function MyServerComponent({ data }: { data: any }) {
           width={96}
           height={96}
         />
+        <Image
+          src={data.sprites.other['official-artwork'].front_default}
+          alt={`${data.name} official artwork`}
+          width={200}
+          height={200}
+        />
       </div>
     </div>
   );
