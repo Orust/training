@@ -1,8 +1,10 @@
 import MyServerComponent from "../components/api-data.server";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Pokemon({ data }: {data: any}) {
   const router = useRouter();
+  const id = parseInt(router.query.id as string);
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -10,6 +12,8 @@ export default function Pokemon({ data }: {data: any}) {
     <div>
       <h1>My Server Component</h1>
       <MyServerComponent data={data}/>
+      {id > 1 && <Link href={`/${id - 1}`}>Previous</Link>}
+      <Link href={`/${id + 1}`}>Next</Link>
     </div>
   );
 }
