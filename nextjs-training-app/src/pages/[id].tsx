@@ -12,7 +12,7 @@ export default function Pokemon({ data }: {data: any}) {
     <div>
       <h1>My Server Component</h1>
       <MyServerComponent data={data}/>
-      {id > 1 && <Link href={`/${id - 1}`}>Previous</Link>}
+      {id > 1 && <Link href={`/${id - 1}`}>Previous&nbsp;&nbsp;</Link>}
       <Link href={`/${id + 1}`}>Next</Link>
     </div>
   );
